@@ -14,6 +14,7 @@ services:
       - DUMP978_RTLSDR_DEVICE=${UAT_SDR_SERIAL}
       - DUMP978_SDR_GAIN=${UAT_SDR_GAIN}
       - DUMP978_SDR_PPM=${UAT_SDR_PPM}
+      - DUMP978_AUTOGAIN_INITIAL_GAIN=${UAT_SDR_INITIAL_GAIN}
     volumes:
       - /var/lib/adsb/dump978:/var/globe_history
       - /dev:/dev:ro
