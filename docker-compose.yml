@@ -3,7 +3,7 @@ services:
   dump978:
     image: ghcr.io/sdr-enthusiasts/docker-dump978:latest
     container_name: dump978
-    restart: unless-stopped
+    restart: always
     device_cgroup_rules:
       - 'c 189:* rwm'
     env_file: /etc/adsb/.env
@@ -39,7 +39,7 @@ services:
     depends_on:
       - dump978
     hostname: ultrafeeder
-    restart: unless-stopped
+    restart: always
     device_cgroup_rules:
       - 'c 189:* rwm'
     ports:
@@ -138,7 +138,7 @@ services:
     container_name: piaware
     depends_on:
       - ultrafeeder
-    restart: unless-stopped
+    restart: always
     ports:
       - 8081:8080
     env_file: /etc/adsb/.env
@@ -156,7 +156,7 @@ services:
     container_name: fr24
     depends_on:
       - ultrafeeder
-    restart: unless-stopped
+    restart: always
     ports:
       - 8754:8754
     env_file: /etc/adsb/.env
@@ -172,7 +172,7 @@ services:
     container_name: planewatch
     depends_on:
       - ultrafeeder
-    restart: unless-stopped
+    restart: always
     env_file: /etc/adsb/.env
     environment:
       - BEASTHOST=ultrafeeder
@@ -209,7 +209,7 @@ services:
     container_name: pfclient
     depends_on:
       - ultrafeeder
-    restart: unless-stopped
+    restart: always
     ports:
       - 30053:30053
     env_file: /etc/adsb/.env
@@ -227,7 +227,7 @@ services:
     container_name: adsbhub
     depends_on:
       - ultrafeeder
-    restart: unless-stopped
+    restart: always
     env_file: /etc/adsb/.env
     environment:
       - TZ=${FEEDER_TZ}
