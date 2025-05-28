@@ -164,7 +164,6 @@ services:
       - BEASTHOST=ultrafeeder
       - FR24KEY=${FR24_SHARING_KEY}
       - FR24KEY_UAT=${FR24_SHARING_KEY_UAT}
-      - MLAT=yes
     tmpfs:
       - /var/log
   planewatch:
