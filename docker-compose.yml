@@ -6,7 +6,7 @@ services:
     restart: always
     device_cgroup_rules:
       - 'c 189:* rwm'
-    env_file: /etc/adsb/.env
+    env_file: .env
     environment:
       - TZ=${FEEDER_TZ}
       - LAT=${FEEDER_LAT}
@@ -42,7 +42,7 @@ services:
       - 'c 189:* rwm'
     extra_hosts:
       - "host-gateway:host-gateway"
-    env_file: /etc/adsb/.env
+    env_file: .env
     environment:
       # --------------------------------------------------
       # general parameters:
@@ -136,7 +136,7 @@ services:
     depends_on:
       - ultrafeeder
     restart: always
-    env_file: /etc/adsb/.env
+    env_file: .env
     environment:
       - BEASTHOST=ultrafeeder
       - UAT_RECEIVER_TYPE=relay
@@ -152,7 +152,7 @@ services:
     depends_on:
       - ultrafeeder
     restart: always
-    env_file: /etc/adsb/.env
+    env_file: .env
     environment:
       - BEASTHOST=ultrafeeder
       - FR24KEY=${FR24_SHARING_KEY}
@@ -165,7 +165,7 @@ services:
     depends_on:
       - ultrafeeder
     restart: always
-    env_file: /etc/adsb/.env
+    env_file: .env
     environment:
       - BEASTHOST=ultrafeeder
       - LAT=${FEEDER_LAT}
@@ -182,7 +182,7 @@ services:
     depends_on:
       - ultrafeeder
     restart: always
-    env_file: /etc/adsb/.env
+    env_file: .env
     environment:
       - BEASTHOST=ultrafeeder
       - UAT_RECEIVER_HOST=dump978
@@ -202,7 +202,7 @@ services:
     depends_on:
       - ultrafeeder
     restart: always
-    env_file: /etc/adsb/.env
+    env_file: .env
     environment:
       - TZ=${FEEDER_TZ}
       - BEASTHOST=ultrafeeder
@@ -218,7 +218,7 @@ services:
     depends_on:
       - ultrafeeder
     restart: always
-    env_file: /etc/adsb/.env
+    env_file: .env
     environment:
       - TZ=${FEEDER_TZ}
       - SBSHOST=ultrafeeder
