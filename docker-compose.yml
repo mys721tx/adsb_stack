@@ -18,8 +18,6 @@ services:
     volumes:
       - /var/lib/adsb/dump978:/var/globe_history
       - /dev:/dev:ro
-    ports:
-      - 30980:80
     tmpfs:
       - /run:exec,size=64M
       - /tmp:size=64M
@@ -42,8 +40,6 @@ services:
     restart: always
     device_cgroup_rules:
       - 'c 189:* rwm'
-    ports:
-      - 8080:80               # to expose the web interface
     extra_hosts:
       - "host-gateway:host-gateway"
     env_file: /etc/adsb/.env
@@ -140,8 +136,6 @@ services:
     depends_on:
       - ultrafeeder
     restart: always
-    ports:
-      - 8081:8080
     env_file: /etc/adsb/.env
     environment:
       - BEASTHOST=ultrafeeder
@@ -158,8 +152,6 @@ services:
     depends_on:
       - ultrafeeder
     restart: always
-    ports:
-      - 8754:8754
     env_file: /etc/adsb/.env
     environment:
       - BEASTHOST=ultrafeeder
@@ -210,8 +202,6 @@ services:
     depends_on:
       - ultrafeeder
     restart: always
-    ports:
-      - 30053:30053
     env_file: /etc/adsb/.env
     environment:
       - TZ=${FEEDER_TZ}
@@ -233,3 +223,21 @@ services:
       - TZ=${FEEDER_TZ}
       - SBSHOST=ultrafeeder
       - CLIENTKEY=${ADSBHUB_STATION_KEY}
+  nginx:
+    image: docker.io/library/nginx:latest
+    container_name: nginx
+    depends_on:
+      - dump978
+      - ultrafeeder
+      - piaware
+      - fr24
+      - pfclient
+    restart: always
+    ports:
+      - "30980:30980"
+      - "8080:8080"
+      - "8081:8081"
+      - "8754:8754"
+      - "30053:30053"
+    volumes:
+      - /etc/adsb/nginx:/etc/nginx/conf.d
