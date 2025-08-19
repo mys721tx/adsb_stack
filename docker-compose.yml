@@ -190,6 +190,7 @@ services:
       - ALT=${FEEDER_ALT_M}
       - TZ=${FEEDER_TZ}
       - SHARING_KEY=${AIRNAVRADAR_SHARING_KEY}
+      - RB_SERVER=true
     tmpfs:
       - /run:exec,size=64M
       - /var/log
